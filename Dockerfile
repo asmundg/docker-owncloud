@@ -7,7 +7,8 @@ RUN apt-get install -y curl libphp-phpmailer nginx php-crypt-blowfish php-getid3
 RUN echo 'daemon off;' >> /etc/nginx/nginx.conf
 
 RUN (curl http://download.owncloud.org/community/owncloud-6.0.1.tar.bz2 | tar jx -C /usr/share)
-RUN chown -R www-data /usr/share/owncloud
+RUN mkdir -p /var/lib/owncloud
+RUN chown -R www-data /var/lib/owncloud
 
 ADD conf/dbconfig.sh /usr/local/sbin/owncloud-dbconfig.sh
 RUN chmod +x /usr/local/sbin/owncloud-dbconfig.sh
@@ -16,5 +17,5 @@ ADD conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD conf/autoconfig.php /usr/share/owncloud/config/autoconfig.php
 
 EXPOSE 80
-VOLUME ["/var/lib/owncloud/data"]
+VOLUME ["/var/lib/owncloud/"]
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

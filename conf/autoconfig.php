@@ -6,7 +6,7 @@ $AUTOCONFIG = array(
   "dbpass"        => "owncloud",
   "dbhost"        => "localhost",
   "dbtableprefix" => "",
-  "directory"     => "/var/lib/owncloud/data",
+  "directory"     => "/var/lib/owncloud",
   "adminlogin"    => "admin",
   "adminpass"     => "admin",
 );
